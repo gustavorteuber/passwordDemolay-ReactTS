@@ -104,12 +104,12 @@ body {
 }
 
 .password-column {
-  width: 50%;
+  width: 45%;
 }
 
 /* Estilos para as senhas chamadas */
 .chamada-passwords {
-  width: 50%;
+  width: 60%;
 }
 
 .chamada-passwords h2 {
