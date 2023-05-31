@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PasswordForm from "./components/PasswordForm";
 import PasswordList from "./components/PasswordList";
+import "./index.css";
 
 interface Password {
   id: string;
@@ -62,9 +63,10 @@ const App: React.FC = () => {
   const preparacaoPasswords = passwords
     .filter((password) => !password.chamada)
     .slice(0, 6);
-  const chamadaPasswords = passwords
-    .filter((password) => password.chamada)
-    .slice(0, 6);
+
+  const halfIndex = Math.ceil(preparacaoPasswords.length / 2);
+  const firstColumnPasswords = preparacaoPasswords.slice(0, halfIndex);
+  const secondColumnPasswords = preparacaoPasswords.slice(halfIndex);
 
   return (
     <div className="container">
@@ -81,15 +83,25 @@ const App: React.FC = () => {
         <PasswordForm onAddPassword={addPassword} />
         <div className="preparacao-passwords">
           <h2>Senhas em preparação</h2>
-          <PasswordList
-            passwords={preparacaoPasswords}
-            onClickPassword={handleClickPassword}
-          />
+          <div className="password-columns">
+            <div className="password-column">
+              <PasswordList
+                passwords={firstColumnPasswords}
+                onClickPassword={handleClickPassword}
+              />
+            </div>
+            <div className="password-column">
+              <PasswordList
+                passwords={secondColumnPasswords}
+                onClickPassword={handleClickPassword}
+              />
+            </div>
+          </div>
         </div>
         <div className="chamada-passwords">
           <h2>Senhas chamadas</h2>
           <PasswordList
-            passwords={chamadaPasswords}
+            passwords={passwords.filter((password) => password.chamada)}
             onClickPassword={handleClickPassword}
           />
         </div>
