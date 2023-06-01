@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PasswordForm from "./components/PasswordForm";
 import PasswordList from "./components/PasswordList";
 import "./index.css";
+import Carousel from "./components/Carousel";
+import soundFile from "./assets/effect.mp3";
 
 interface Password {
   id: string;
@@ -36,11 +38,7 @@ const App: React.FC = () => {
   const handleClickPassword = (id: string) => {
     const updatedPasswords = passwords.map((password) => {
       if (password.id === id) {
-        if (password.chamada) {
-          password.chamada = false;
-        } else {
-          password.chamada = true;
-        }
+        password.chamada = !password.chamada;
       }
       return password;
     });
@@ -51,13 +49,10 @@ const App: React.FC = () => {
     );
     if (clickedPassword) {
       setCurrentPassword(clickedPassword.value);
-      playSound();
-    }
-  };
 
-  const playSound = () => {
-    const audio = new Audio("/assets/effect.mp3");
-    audio.play();
+      const audio = new Audio(soundFile);
+      audio.play();
+    }
   };
 
   const preparacaoPasswords = passwords
@@ -69,44 +64,47 @@ const App: React.FC = () => {
   const secondColumnPasswords = preparacaoPasswords.slice(halfIndex);
 
   return (
-    <div className="container">
-      <div className="left-side">
-        <div className="password-container">
-          {currentPassword ? (
-            <div className="password">{currentPassword}</div>
-          ) : (
-            <div className="password"></div>
-          )}
+    <>
+      <Carousel />
+      <div className="container">
+        <div className="left-side">
+          <div className="password-container">
+            {currentPassword ? (
+              <div className="password">{currentPassword}</div>
+            ) : (
+              <div className="password"></div>
+            )}
+          </div>
+          <PasswordForm onAddPassword={addPassword} />
         </div>
-      </div>
-      <div className="right-side">
-        <PasswordForm onAddPassword={addPassword} />
-        <div className="preparacao-passwords">
-          <h2>Senhas em preparação</h2>
-          <div className="password-columns">
-            <div className="password-column">
-              <PasswordList
-                passwords={firstColumnPasswords}
-                onClickPassword={handleClickPassword}
-              />
-            </div>
-            <div className="password-column">
-              <PasswordList
-                passwords={secondColumnPasswords}
-                onClickPassword={handleClickPassword}
-              />
+        <div className="right-side">
+          <div className="preparacao-passwords">
+            <h2>Senhas em preparação</h2>
+            <div className="password-columns">
+              <div className="password-column">
+                <PasswordList
+                  passwords={firstColumnPasswords}
+                  onClickPassword={handleClickPassword}
+                />
+              </div>
+              <div className="password-column">
+                <PasswordList
+                  passwords={secondColumnPasswords}
+                  onClickPassword={handleClickPassword}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="chamada-passwords">
-          <h2>Senhas chamadas</h2>
-          <PasswordList
-            passwords={passwords.filter((password) => password.chamada)}
-            onClickPassword={handleClickPassword}
-          />
+          <div className="chamada-passwords">
+            <h2>Senhas chamadas</h2>
+            <PasswordList
+              passwords={passwords.filter((password) => password.chamada)}
+              onClickPassword={handleClickPassword}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
