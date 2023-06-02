@@ -4,7 +4,7 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #ebebeb, #696868);
-  width: 100%;
+  max-width: 100%;
   max-height: 100vh;
 }
 
