@@ -5,8 +5,9 @@ import Cooperlipto from "../assets/Cooperlipto.png";
 import Elixir from "../assets/Elixir.png";
 import Guardemais from "../assets/Guardemais.png";
 import Mkraft from "../assets/Mkraft.png";
+import Salles from "../assets/Salles - Ouro.jpeg";
 
-const Carousel = () => {
+const CarouselGold = () => {
   const settings = {
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -20,20 +21,23 @@ const Carousel = () => {
     <div className="all">
       <Slider {...settings}>
         <div>
-          <img src={Cooperlipto} alt="patrocinio" />
+          <img className="ouro" src={Cooperlipto} alt="patrocinio" />
         </div>
         <div>
-          <img src={Elixir} alt="patrocinio" />
+          <img className="ouro" src={Elixir} alt="patrocinio" />
         </div>
         <div>
-          <img src={Guardemais} alt="patrocinio" />
+          <img className="ouro" src={Guardemais} alt="patrocinio" />
         </div>
         <div>
-          <img src={Mkraft} alt="patrocinio" />
+          <img className="ouro" src={Mkraft} alt="patrocinio" />
+        </div>
+        <div>
+          <img className="ouro" src={Salles} alt="patrocinio" />
         </div>
       </Slider>
     </div>
   );
 };
 
-export default Carousel;
+export default CarouselGold;

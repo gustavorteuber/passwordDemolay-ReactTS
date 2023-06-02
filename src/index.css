@@ -179,3 +179,18 @@ input {
   align-items: center;
   justify-content: center;
 }
+
+.bronze {
+  border: 4px solid #ff9900e7;
+  border-radius: 12px;
+}
+
+.ouro {
+  border-radius: 12px;
+  border: 4px solid #ffe600e7;
+}
+
+.apoiador {
+  border-radius: 12px;
+  border: 4px solid #575552e7;
+}

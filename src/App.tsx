@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import PasswordForm from "./components/PasswordForm";
 import PasswordList from "./components/PasswordList";
 import "./index.css";
-import Carousel from "./components/Carousel";
+import CarouselGold from "./components/CarouselGold";
+// import CarouselBronze from "./components/CarouselBronze";
+// import CarouselApoiador from "./components/CarouselApoiador";
 import soundFile from "./assets/effect.mp3";
 
 interface Password {
@@ -65,7 +67,9 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Carousel />
+      <CarouselGold />
+      {/* <CarouselApoiador /> */}
+      {/* <CarouselBronze /> */}
       <div className="container">
         <div className="left-side">
           <div className="password-container">
